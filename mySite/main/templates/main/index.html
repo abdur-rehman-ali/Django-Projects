@@ -1,5 +1,11 @@
-{% extends 'main/layout.html' %}
-{% block title %}Index{% endblock title %}
+{% extends 'main/layout.html' %} {% block title %}Index{% endblock title %} 
 {% block body %}
-<h1>Hello</h1>
+
+<div class="container">
+  <h1 class="text-center mt-2">Add Task to done</h1>
+  <form action="#",method="GET">
+    {{form.as_p}}
+    <input type="submit" class="btn btn-dark btn-block" value="Submit">
+  </form>
+</div>
 {% endblock body %}
