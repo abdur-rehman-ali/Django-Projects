@@ -1,0 +1,26 @@
+{% extends 'main/layout.html' %} {% block title %}Show{% endblock title %} 
+{% block body %}
+<div class="container">
+  <h1 class="text-center mt-2">To do list</h1>
+  <table class="table mt-5">
+    <thead>
+      <tr class="row">
+        <th class="col-1">#</th>
+        <th class="col-8">Task</th>
+        <th class="col-3">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="row">
+        <th class="col-1">1</th>
+        <td class="col-8">Complete project</td>
+        <td class="col-3">
+          <button type="button" class="btn btn-danger">Danger</button>
+          <button type="button" class="btn btn-warning">Warning</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock body %}
