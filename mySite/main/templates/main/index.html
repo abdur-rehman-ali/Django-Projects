@@ -2,7 +2,7 @@
 {% block body %}
 
 <div class="container">
-  <h1 class="text-center mt-2">Add Task to done</h1>
+  <h1 class="alert alert-dark mt-3 text-center">Add Task to done</h1>
   <form action="{% url 'index' %}" method="POST">
    {% csrf_token %}
     {{form.as_p}}

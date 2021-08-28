@@ -1,0 +1,17 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Update{% endblock title %}
+{% block body %}
+<div class="container">
+<h1 class="alert alert-dark mt-3 text-center" >Update data </h1>
+<form action="{% url 'update' id %}" method="POST">
+{{form}}
+{% csrf_token %}
+<input type="submit" value="Update" class="btn btn-dark mt-3">
+<a href="{% url 'showItems' %}" class="btn btn-primary mt-3">Back to show</a>
+</form>
+
+
+</div>
+
+{% endblock body %}

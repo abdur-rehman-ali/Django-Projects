@@ -1,7 +1,7 @@
 {% extends 'main/layout.html' %} {% block title %}Show{% endblock title %} 
-{% block body %}
+{%block body %}
 <div class="container">
-  <h1 class="text-center mt-2">To do list</h1>
+  <h1 class="alert alert-dark mt-3 text-center">To do list</h1>
   <table class="table mt-5">
     <thead>
       <tr class="row">
@@ -11,25 +11,26 @@
       </tr>
     </thead>
     <tbody>
-
-    {% for dt in data  %}
+      {% for dt in data %}
       <tr class="row">
         <th class="col-1">{{dt.id}}</th>
         <td class="col-8">{{dt.task}}</td>
         <td class="col-3">
-        <form action=" {% url 'delete' dt.id %} " method="POST" class="d-inline">
-         {% csrf_token %}
-        <input type="submit" class="btn btn-danger" value="Delete">
-        </form>
-       
-          <button type="button" class="btn btn-warning">Update</button>
+          <form
+            action=" {% url 'delete' dt.id %} "
+            method="POST"
+            class="d-inline"
+          >
+            {% csrf_token %}
+            <input type="submit" class="btn btn-danger" value="Delete" />
+          </form>
+
+         <a href="{% url 'update' dt.id %}" class="btn btn-warning">Update</a>
         </td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
 </div>
-
-
 
 {% endblock body %}
