@@ -17,8 +17,12 @@
         <th class="col-1">{{dt.id}}</th>
         <td class="col-8">{{dt.task}}</td>
         <td class="col-3">
-          <button type="button" class="btn btn-danger">Danger</button>
-          <button type="button" class="btn btn-warning">Warning</button>
+        <form action=" {% url 'delete' dt.id %} " method="POST" class="d-inline">
+         {% csrf_token %}
+        <input type="submit" class="btn btn-danger" value="Delete">
+        </form>
+       
+          <button type="button" class="btn btn-warning">Update</button>
         </td>
       </tr>
       {% endfor %}
