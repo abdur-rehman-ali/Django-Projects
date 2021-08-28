@@ -11,16 +11,21 @@
       </tr>
     </thead>
     <tbody>
+
+    {% for dt in data  %}
       <tr class="row">
-        <th class="col-1">1</th>
-        <td class="col-8">Complete project</td>
+        <th class="col-1">{{dt.id}}</th>
+        <td class="col-8">{{dt.task}}</td>
         <td class="col-3">
           <button type="button" class="btn btn-danger">Danger</button>
           <button type="button" class="btn btn-warning">Warning</button>
         </td>
       </tr>
+      {% endfor %}
     </tbody>
   </table>
 </div>
+
+
 
 {% endblock body %}
