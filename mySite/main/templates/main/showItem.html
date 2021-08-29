@@ -1,7 +1,13 @@
-{% extends 'main/layout.html' %} {% block title %}Show{% endblock title %} 
+{% extends 'main/layout.html' %} {% block title %}Show{% endblock title %}
 {%block body %}
 <div class="container">
   <h1 class="alert alert-dark mt-3 text-center">To do list</h1>
+  {% if messages %} {% for message in messages%}
+  <h3 {% if message.tags %} class="alert-{{message.tags}} " {% endif %}>
+    {{message}}
+  </h3>
+
+  {% endfor %} {% endif %}
   <table class="table mt-5">
     <thead>
       <tr class="row">
@@ -25,7 +31,7 @@
             <input type="submit" class="btn btn-danger" value="Delete" />
           </form>
 
-         <a href="{% url 'update' dt.id %}" class="btn btn-warning">Update</a>
+          <a href="{% url 'update' dt.id %}" class="btn btn-warning">Update</a>
         </td>
       </tr>
       {% endfor %}

@@ -2,7 +2,13 @@
 {% block body %}
 
 <div class="container">
-  <h1 class="alert alert-dark mt-3 text-center">Add Task to done</h1>
+  <h3 class="alert alert-dark mt-3 text-center">Add Task to done</h3>
+  {% if messages %}
+  {% for message in  messages%}
+<h1 {% if message.tags %} class="alert-{{message.tags}}" {% endif %} >{{message}}</h1>
+
+  {% endfor %}
+  {% endif %}
   <form action="{% url 'index' %}" method="POST">
    {% csrf_token %}
     {{form.as_p}}
