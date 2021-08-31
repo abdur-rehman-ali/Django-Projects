@@ -1,5 +1,6 @@
 from django.shortcuts import render,HttpResponseRedirect
-from .forms import signInForm
+from django.contrib.auth import login,authenticate,logout
+from .forms import signInForm,logInForm
 # Create your views here.
 def home(request):
     return render(request,'blog/home.html')
@@ -10,6 +11,7 @@ def about(request):
 def dashboard(request):
     return render(request,'blog/dashboard.html')
 
+#Sign in page
 def signIn_view(request):
     if request.method=="POST":
         fm=signInForm(request.POST)
@@ -22,8 +24,27 @@ def signIn_view(request):
         'form':fm
     })
 
+
+
 def logIn_view(request):
-    return render(request,'blog/logIn.html')
+    if request.method=="POST":
+        fm=logInForm(request=request,data=request.POST)
+        print("POST REQUEST")
+        print(fm.is_valid())
+        if fm.is_valid():
+            uname=fm.cleaned_data['username']
+            upass=fm.cleaned_data['password']
+            print("Inside valid")
+            user=authenticate(username=uname,password=upass)
+            if user is not None:
+                login(request,user)
+                print("Executed")
+                return HttpResponseRedirect('/home/')
+    else:        
+        fm=logInForm()
+    return render(request,'blog/logIn.html',{
+        'form':fm
+    })
 
 def logOut_view(request):
     pass
