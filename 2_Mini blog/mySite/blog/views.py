@@ -27,26 +27,30 @@ def signIn_view(request):
 
 
 def logIn_view(request):
-    if request.method=="POST":
-        fm=logInForm(request=request,data=request.POST)
-        print("POST REQUEST")
-        print(fm.is_valid())
-        if fm.is_valid():
-            uname=fm.cleaned_data['username']
-            upass=fm.cleaned_data['password']
-            print("Inside valid")
-            user=authenticate(username=uname,password=upass)
-            if user is not None:
-                login(request,user)
-                print("Executed")
-                return HttpResponseRedirect('/home/')
-    else:        
-        fm=logInForm()
-    return render(request,'blog/logIn.html',{
-        'form':fm
-    })
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/')
+    else:
+        if request.method=="POST":
+            fm=logInForm(request=request,data=request.POST)
+            print("POST REQUEST")
+            print(fm.is_valid())
+            if fm.is_valid():
+                uname=fm.cleaned_data['username']
+                upass=fm.cleaned_data['password']
+                print("Inside valid")
+                user=authenticate(username=uname,password=upass)
+                if user is not None:
+                    login(request,user)
+                    print("Executed")
+                    return HttpResponseRedirect('/')
+        else:        
+            fm=logInForm()
+        return render(request,'blog/logIn.html',{
+            'form':fm
+        })
 
 def logOut_view(request):
-    pass
+    logout(request)
+    return HttpResponseRedirect('/logIn/')
 
 
