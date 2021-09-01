@@ -4,10 +4,8 @@ from .forms import signInForm,logInForm,userDataUpdateForm
 
 # Create your views here.
 def home(request):
-    if request.user.is_authenticated:
-        return render(request,'blog/home.html')
-    else:
-        return HttpResponseRedirect('/logIn/')
+    return render(request,'blog/home.html')
+
 
 def about(request):
     return render(request,'blog/about.html')
