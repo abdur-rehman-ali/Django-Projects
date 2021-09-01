@@ -1,10 +1,16 @@
-{% extends 'blog/layout.html' %}
-
-{% block title %}
-add post
-{% endblock title %}
-
+{% extends 'blog/layout.html' %} {% block title %} add {% endblock title %}
 {% block content %}
-<h1>add post</h1>
+<h1 class="alert alert-success my-2 text-center">Add post</h1>
 
+<form action="{% url 'addPost' %}" method="POST" novalidate>
+  {% csrf_token %} {% for er in form.non_field_errors %}
+  <small class="alert-danger">{{er|striptags}}</small>
+  {% endfor %} {% for field in form %}
+  <div class="form-group">
+    {{field.label_tag}} {{field}}
+    <small class="alert-danger">{{field.errors|striptags}}</small>
+  </div>
+  {% endfor %}
+  <input type="submit" class="btn btn-success btn-block" value="Send" />
+</form>
 {% endblock content %}

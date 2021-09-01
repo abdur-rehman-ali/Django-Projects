@@ -1,6 +1,6 @@
 from django.shortcuts import render,HttpResponseRedirect
 from django.contrib.auth import login,authenticate,logout
-from .forms import signInForm,logInForm,userDataUpdateForm
+from .forms import signInForm,logInForm,userDataUpdateForm,PostForm
 
 # Create your views here.
 def home(request):
@@ -14,7 +14,10 @@ def dashboard(request):
     return render(request,'blog/dashboard.html')
 
 def addPost(request):
-    return render(request,'blog/addPost.html')
+    fm=PostForm()
+    return render(request,'blog/addPost.html',{
+        'form':fm,
+    })
 
 
 def profile(request):

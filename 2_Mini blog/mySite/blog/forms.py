@@ -2,6 +2,7 @@ from django.contrib.auth.forms import UserCreationForm,AuthenticationForm,UserCh
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.contrib.auth.models import User
 from django import forms
+from .models import Post
 
 class signInForm(UserCreationForm):
     password1=forms.CharField(widget=forms.PasswordInput(attrs={
@@ -48,4 +49,17 @@ class userDataUpdateForm(UserChangeForm):
             'class':'form-control'}),
             'email':forms.TextInput(attrs={
             'class':'form-control'}),
+        }
+
+class PostForm(forms.ModelForm):
+    class Meta:
+        model=Post
+        fields = ('title','content')
+        widgets={
+            'title':forms.TextInput(attrs={
+                'class':'form-control'
+            }),
+            'content':forms.Textarea(attrs={
+                'class':'form-control'
+            }),
         }
