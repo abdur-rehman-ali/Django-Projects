@@ -1,6 +1,8 @@
 from django.shortcuts import render,HttpResponseRedirect
 from django.contrib.auth import login,authenticate,logout
 from .forms import signInForm,logInForm,userDataUpdateForm,PostForm
+from .models import Post
+import datetime
 
 # Create your views here.
 def home(request):
@@ -14,7 +16,18 @@ def dashboard(request):
     return render(request,'blog/dashboard.html')
 
 def addPost(request):
-    fm=PostForm()
+    if request.method=="POST":
+        fm=PostForm(request.POST)
+        if fm.is_valid():
+            postTitle = fm.cleaned_data['title']
+            postContent = fm.cleaned_data['content']
+            postAuthor = request.user.username
+            postDate = datetime.datetime.now()
+            post = Post(title=postTitle,content=postContent,author=postAuthor,date=postDate)
+            post.save()
+            fm=PostForm()
+    else:       
+        fm=PostForm()
     return render(request,'blog/addPost.html',{
         'form':fm,
     })
