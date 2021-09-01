@@ -14,6 +14,10 @@ def about(request):
 def dashboard(request):
     return render(request,'blog/dashboard.html')
 
+
+def profile(request):
+    return render(request,'blog/profile.html')
+
 #Sign in page
 def signIn_view(request):
     if request.method=="POST":

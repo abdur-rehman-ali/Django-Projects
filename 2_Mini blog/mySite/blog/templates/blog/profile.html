@@ -1,0 +1,14 @@
+{% extends 'blog/layout.html' %}
+
+{% block title %}
+Profile
+{% endblock title %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+<h1>Welcome {{request.user.username}}</h1>
+{% else %}
+<h1>Guest</h1>
+{%endif  %}
+
+{% endblock content %}
