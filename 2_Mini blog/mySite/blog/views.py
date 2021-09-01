@@ -1,6 +1,7 @@
 from django.shortcuts import render,HttpResponseRedirect
 from django.contrib.auth import login,authenticate,logout
-from .forms import signInForm,logInForm
+from .forms import signInForm,logInForm,userDataUpdateForm
+
 # Create your views here.
 def home(request):
     if request.user.is_authenticated:
@@ -16,7 +17,18 @@ def dashboard(request):
 
 
 def profile(request):
-    return render(request,'blog/profile.html')
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            fm=userDataUpdateForm(data=request.POST,instance=request.user)
+            if fm.is_valid():
+                fm.save()
+        else:
+            fm=userDataUpdateForm(instance=request.user)
+        return render(request,'blog/profile.html',{
+            'form':fm
+        })
+    else:
+        return HttpResponseRedirect('/logIn/')
 
 #Sign in page
 def signIn_view(request):
