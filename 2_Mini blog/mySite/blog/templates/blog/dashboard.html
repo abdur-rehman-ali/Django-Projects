@@ -5,5 +5,6 @@ dashboard
 {% endblock title %}
 
 {% block content %}
-<h1>dashboard</h1>
+<h1>{{request.user.username}}'s dashboard</h1>
+<a href="{% url 'addPost' %}" class="btn btn-primary">Add post</a>
 {% endblock content %}

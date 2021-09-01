@@ -13,6 +13,9 @@ def about(request):
 def dashboard(request):
     return render(request,'blog/dashboard.html')
 
+def addPost(request):
+    return render(request,'blog/addPost.html')
+
 
 def profile(request):
     if request.user.is_authenticated:
