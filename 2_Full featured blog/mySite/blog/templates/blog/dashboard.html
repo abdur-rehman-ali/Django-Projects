@@ -7,4 +7,11 @@ dashboard
 {% block content %}
 <h1>{{request.user.username}}'s dashboard</h1>
 <a href="{% url 'addPost' %}" class="btn btn-primary">Add post</a>
+<br><br>
+{% for post in posts %}
+<h1>{{post.title}}</h1>
+<h6>Writen by {{post.author}} on {{post.date}}</h6> 
+<p>{{post.content}}</p>
+<br><hr>
+{% endfor %}
 {% endblock content %}

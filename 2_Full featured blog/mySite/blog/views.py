@@ -16,7 +16,13 @@ def about(request):
     return render(request,'blog/about.html')
 
 def dashboard(request):
-    return render(request,'blog/dashboard.html')
+    if request.user.is_authenticated:
+        posts = Post.objects.filter(author=request.user.username)
+        return render(request,'blog/dashboard.html',{
+            'posts':posts
+        })
+    else:
+        return HttpResponseRedirect('/logIn/')
 
 def addPost(request):
     if request.user.is_authenticated:
@@ -74,8 +80,6 @@ def logIn_view(request):
     else:
         if request.method=="POST":
             fm=logInForm(request=request,data=request.POST)
-
-            print(fm.is_valid())
             if fm.is_valid():
                 uname=fm.cleaned_data['username']
                 upass=fm.cleaned_data['password']
