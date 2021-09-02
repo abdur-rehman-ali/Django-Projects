@@ -6,7 +6,10 @@ import datetime
 
 # Create your views here.
 def home(request):
-    return render(request,'blog/home.html')
+    posts = Post.objects.all()
+    return render(request,'blog/home.html',{
+        'posts':posts
+    })
 
 
 def about(request):
