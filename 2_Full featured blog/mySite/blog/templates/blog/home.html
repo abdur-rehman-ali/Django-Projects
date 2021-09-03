@@ -14,6 +14,12 @@ Home page
 <h1>{{post.title}}</h1>
 <h6>Writen by {{post.author}} on {{post.date}}</h6> 
 <p>{{post.content}}</p>
+
+{% if request.user.username == post.author  %}
+<a href="{% url 'updatePost' post.id %}" class="btn btn-success">Update post</a>
+<a href="{% url 'deletePost' post.id %}" class="btn btn-danger">Delete post</a>
+{% endif %}
+
 <br><hr>
 {% endfor %}
 {% endblock content %}
