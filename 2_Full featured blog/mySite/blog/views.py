@@ -47,8 +47,16 @@ def addPost(request):
 
 def updatePost(request,id):
     if request.user.is_authenticated:
+        post=Post.objects.get(pk=id)
+        if request.method=="POST":
+            fm=PostForm(request.POST,instance=post)
+            if fm.is_valid():
+                fm.save()
+        else:
+            fm = PostForm(instance=post)
         return render(request,'blog/updatePost.html',{
-            'id':id
+            'id':id,
+            'form':fm
         })
     else:
         return HttpResponseRedirect('/logIn/')
