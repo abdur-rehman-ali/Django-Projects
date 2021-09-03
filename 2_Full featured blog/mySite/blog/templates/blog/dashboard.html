@@ -12,6 +12,9 @@ dashboard
 <h1>{{post.title}}</h1>
 <h6>Writen by {{post.author}} on {{post.date}}</h6> 
 <p>{{post.content}}</p>
+<a href="{% url 'updatePost' post.id %}" class="btn btn-success">Update post</a>
+<a href="{% url 'deletePost' post.id %}" class="btn btn-danger">Delete post</a>
 <br><hr>
 {% endfor %}
+
 {% endblock content %}

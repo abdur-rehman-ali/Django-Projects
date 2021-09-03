@@ -45,6 +45,23 @@ def addPost(request):
         return HttpResponseRedirect('/logIn/')
 
 
+def updatePost(request,id):
+    if request.user.is_authenticated:
+        return render(request,'blog/updatePost.html',{
+            'id':id
+        })
+    else:
+        return HttpResponseRedirect('/logIn/')
+
+def deletePost(request,id):
+    if request.user.is_authenticated:
+        post=Post.objects.get(id=id)
+        post.delete()
+        return HttpResponseRedirect('/dashboard/')
+    else:
+        return HttpResponseRedirect('/logIn/')
+
+
 def profile(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
