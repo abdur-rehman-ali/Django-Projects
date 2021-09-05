@@ -18,6 +18,16 @@
             {{form}}
             <input type="submit" class="btn btn-primary" value="Upload">
         </form>
+        <div class="row">
+            {% for img in images %}
+            <div class="col-sm-4">
+                <div class="card m-2">
+                    
+                    <img src="{{img.image.url}}" alt="" class="card-image-top" height="200px">
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
 
 
