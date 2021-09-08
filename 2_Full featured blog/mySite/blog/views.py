@@ -2,7 +2,7 @@ from django.shortcuts import render,HttpResponseRedirect
 from django.contrib.auth import login,authenticate,logout
 from .forms import signInForm,logInForm,userDataUpdateForm,PostForm
 from .models import Post
-import datetime
+
 
 # Create your views here.
 def home(request):
@@ -32,8 +32,7 @@ def addPost(request):
                 postTitle = fm.cleaned_data['title']
                 postContent = fm.cleaned_data['content']
                 postAuthor = request.user.username
-                postDate = datetime.datetime.now()
-                post = Post(title=postTitle,content=postContent,author=postAuthor,date=postDate)
+                post = Post(title=postTitle,content=postContent,author=postAuthor,user_post_id=request.user.id)
                 post.save()
                 fm=PostForm()
         else:       
