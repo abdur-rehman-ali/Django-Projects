@@ -10,6 +10,7 @@ Home page
 {% else %}
 <h1>Guest</h1>
 {%endif  %}
+
 {% for post in posts %}
 <h1>{{post.title}}</h1>
 <h6>Writen by {{post.author}} on {{post.date}}</h6> 
