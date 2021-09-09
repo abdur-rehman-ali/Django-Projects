@@ -15,11 +15,15 @@
                     <h2>Menu</h2>
                 </header>
                 <ul>
-                    <li><a href="index.html">Homepage</a></li>
-                    <li><a href="generic.html">About</a></li>
-                    <li><a href="elements.html">Profile</a></li>
-                    <li><a href="./dashboard.html">Dashboard</a></li>
-                    <li><a href="#">Sign out</a></li>
+                    {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'profile' %}">Profile</a></li>
+                    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                    <li><a href="{% url 'logOut' %}">Log out</a></li>
+                    {% else %}
+                    <li><a href="{% url 'home' %}">Homepage</a></li>
+                    <li><a href="{% url 'logIn' %}">Log in</a></li>
+                    {% endif %}
 
                 </ul>
             </nav>
