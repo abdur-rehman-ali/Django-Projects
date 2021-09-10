@@ -23,7 +23,7 @@ def about(request):
 def dashboard(request):
     if request.user.is_authenticated:
         posts = Post.objects.filter(author=request.user.username)
-        return render(request,'blog/dashboard.html',{
+        return render(request,'blog/dashboard1.html',{
             'posts':posts
         })
     else:
