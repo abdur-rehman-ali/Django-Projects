@@ -1,0 +1,32 @@
+{% extends 'blog/layout1.html' %} {% load static%} {% block title %} profile
+page {% endblock title %} {% block content %}
+<!-- Section -->
+<section>
+  {% if request.user.is_authenticated %}
+  <header class="major">
+    <h2>Welcome {{request.user.username}}</h2>
+    <h2>Update information</h2>
+  </header>
+  {% endif %}
+
+  <!-- Update form form  -->
+
+  <form action="" method="POST" novalidate>
+    <div class="row gtr-uniform">
+      {% csrf_token %} {% for er in form.non_field_errors %}
+      <small class="alert-danger">{{er|striptags}}</small>
+      {% endfor %} {% for field in form %}
+      <div class="col-12 col-12-xsmall">
+        {{field.label_tag}} {{field}}
+        <small class="alert-danger">{{field.errors|striptags}}</small>
+      </div>
+      {% endfor %}
+
+      <div class="col-12">
+        <input type="submit" class="" value="Update" />
+      </div>
+    </div>
+  </form>
+</section>
+
+{% endblock content %}

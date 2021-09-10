@@ -82,7 +82,7 @@ def profile(request):
                 fm.save()
         else:
             fm=userDataUpdateForm(instance=request.user)
-        return render(request,'blog/profile.html',{
+        return render(request,'blog/profile1.html',{
             'form':fm
         })
     else:
