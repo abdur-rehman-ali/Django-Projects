@@ -42,7 +42,7 @@ def addPost(request):
                 fm=PostForm()
         else:       
             fm=PostForm()
-        return render(request,'blog/addPost.html',{
+        return render(request,'blog/addPost1.html',{
             'form':fm,
         })
     else:

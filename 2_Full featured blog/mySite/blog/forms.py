@@ -57,9 +57,15 @@ class PostForm(forms.ModelForm):
         fields = ('title','content')
         widgets={
             'title':forms.TextInput(attrs={
-                'class':'form-control'
+                'class':'form-control',
+                'placeholder':'Title',
             }),
             'content':forms.Textarea(attrs={
-                'class':'form-control'
+                'rows':20,
+                 'placeholder':'Content',
             }),
+        }
+        labels={
+            'title':'',
+            'content':''
         }

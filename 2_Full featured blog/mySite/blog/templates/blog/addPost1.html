@@ -1,0 +1,24 @@
+{% extends 'blog/layout1.html' %} {% load static%} {% block title %} Add post
+{% endblock title %} {% block content %}
+
+<section>
+  <header class="major">
+    <h2>Add post</h2>
+  </header>
+</section>
+
+<form action="{% url 'addPost' %}" method="POST" novalidate>
+  {% csrf_token %} {% for er in form.non_field_errors %}
+  <small class="alert-danger">{{er|striptags}}</small>
+  {% endfor %} {% for field in form %}
+  <div class="form-group">
+    {{field.label_tag}} {{field}}
+    <small class="alert-danger">{{field.errors|striptags}}</small>
+  </div>
+  {% endfor %}
+  <div class="col-12">
+    <input type="submit" value="Upload" class="button fit" />
+  </div>
+</form>
+
+{% endblock content %}
