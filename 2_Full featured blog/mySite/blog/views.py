@@ -58,7 +58,7 @@ def updatePost(request,id):
                 fm.save()
         else:
             fm = PostForm(instance=post)
-        return render(request,'blog/updatePost.html',{
+        return render(request,'blog/updatePost1.html',{
             'id':id,
             'form':fm
         })
