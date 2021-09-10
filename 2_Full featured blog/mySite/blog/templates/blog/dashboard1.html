@@ -1,8 +1,8 @@
 {% extends 'blog/layout1.html' %} {% load static%} {% block title %} Dashboard
-{% endblock title %} {% block content %} 
+{% endblock title %} {% block content %}
 
 <section>
-<a href="{% url 'addPost' %}" class="button  fit"  >Add post</a>
+  <a href="{% url 'addPost' %}" class="button fit">Add post</a>
 </section>
 
 {% for post in posts %}
