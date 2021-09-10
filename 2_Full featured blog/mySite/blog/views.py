@@ -97,7 +97,7 @@ def signIn_view(request):
             return HttpResponseRedirect('/logIn/')
     else:
         fm=signInForm()
-    return render(request,'blog/signIn.html',{
+    return render(request,'blog/signIn1.html',{
         'form':fm
     })
 
