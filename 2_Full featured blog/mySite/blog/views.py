@@ -118,7 +118,7 @@ def logIn_view(request):
                     return HttpResponseRedirect('/')
         else:        
             fm=logInForm()
-        return render(request,'blog/logIn.html',{
+        return render(request,'blog/login1.html',{
             'form':fm
         })
 

@@ -1,0 +1,30 @@
+{% extends 'blog/layout1.html' %} {% load static%} {% block title %} Log in page
+{% endblock title %} {% block content %}
+<!-- Section -->
+<section>
+  <header class="major">
+    <h2>Log in</h2>
+  </header>
+
+  <!-- Log in form  -->
+
+  <form action="{% url 'logIn' %}" method="POST" novalidate>
+    <div class="row gtr-uniform">
+      {% csrf_token %} {% for er in form.non_field_errors %}
+      <small class="alert-danger">{{er|striptags}}</small>
+      {% endfor %} {% for field in form %}
+      <div class="col-12 col-12-xsmall">
+        {{field.label_tag}} {{field}}
+        <small class="alert-danger">{{field.errors|striptags}}</small>
+      </div>
+      {% endfor %}
+
+      <div class="col-12">
+        <input type="submit" class="btn btn-success btn-block" value="Log in" />
+      </div>
+    </div>
+  </form>
+  <small><a href="{% url 'signIn' %}">Don't have account yet?</a></small>
+</section>
+
+{% endblock content %}
