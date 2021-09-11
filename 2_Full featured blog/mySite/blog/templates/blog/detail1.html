@@ -1,0 +1,38 @@
+{% extends 'blog/layout1.html' %} {% load static%} {% block title %} Home page
+{% endblock title %} {% block content %}
+
+<!-- Section -->
+<section>
+  <header class="major">
+    <h2>Blog posts</h2>
+  </header>
+
+  <div class="posts">
+ 
+    <article>
+      <a href="#" class="image"
+        ><img src="{% static 'blog/assets/images/pic01.jpg' %}" alt=""
+      /></a>
+      <h3>{{post.title}}</h3>
+      <p>{{post.content}}</p>
+
+      <h4>Writen by {{post.author}} on {{post.date}}</h4>
+      <ul class="actions">
+        {% if request.user.username == post.author %}
+        <li>
+          <a href="{% url 'updatePost' post.id %}" class="button"
+            >Update post</a
+          >
+        </li>
+        <li>
+          <a href="{% url 'deletePost' post.id %}" class="button primary"
+            >Delete post</a
+          >
+        </li>
+        {% endif %}
+      </ul>
+    </article>
+  </div>
+</section>
+
+{% endblock content %}

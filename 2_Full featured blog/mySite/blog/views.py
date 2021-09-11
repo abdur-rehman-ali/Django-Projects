@@ -127,3 +127,7 @@ def logOut_view(request):
     return HttpResponseRedirect('/logIn/')
 
 
+def detailPost(request,id):
+    post = Post.objects.get(id=id)
+    context={'post':post}
+    return render(request,'blog/detail1.html',context)
