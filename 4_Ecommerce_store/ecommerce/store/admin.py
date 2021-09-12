@@ -8,7 +8,7 @@ class customerAdmin(admin.ModelAdmin):
 
 @admin.register(models.Product)
 class productAdmin(admin.ModelAdmin):
-    list_display=['id','name','price','digital']
+    list_display=['id','name','price','image','digital']
 
 @admin.register(models.Order)
 class orderAdmin(admin.ModelAdmin):
