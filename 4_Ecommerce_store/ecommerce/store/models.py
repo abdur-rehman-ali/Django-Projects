@@ -51,6 +51,10 @@ class OrderItem(models.Model):
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def get_total(self):
+        return self.product.price * self.quantity
+
 
 class ShippingAddress(models.Model):
     id=models.AutoField(primary_key=True)
