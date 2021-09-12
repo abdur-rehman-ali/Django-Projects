@@ -41,6 +41,18 @@ class Order(models.Model):
     complete = models.BooleanField(default=False)
     transaction_id = models.CharField(max_length=100, null=True)
 
+    @property
+    def get_cart_total(self):
+        items_ordered=self.orderitem_set.all()
+        total_cart_price = sum([item.get_total for item in items_ordered])
+        return total_cart_price
+
+    @property
+    def get_total_cart_items(self):
+        items_ordered=self.orderitem_set.all()
+        total_cart_price = sum([item.quantity for item in items_ordered])
+        return total_cart_price
+
     def __str__(self):
 	    return str(self.id)
 
