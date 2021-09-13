@@ -21,7 +21,7 @@ for (let index = 0; index < cart_buttons.length; index++) {
 
 // This function will use fetch API to send data to backend
 function cartButtonDataToBackend(product_id,action) {
-    let data ={
+    let data_to_sent ={
         'product_id':product_id,
         'action':action,
     }
@@ -34,9 +34,9 @@ function cartButtonDataToBackend(product_id,action) {
             'Content-Type': 'application/json',
             'X-CSRFToken':csrftoken,
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(data_to_sent),
     })
-    .then(response=>response.json() )
+    .then(response=>  response.json() )
     .then(data=>{
         console.log(data);
     })
