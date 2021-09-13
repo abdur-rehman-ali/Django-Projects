@@ -10,6 +10,11 @@
 
 	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 
+	<!-- For getting current user which is required to check whether current user is logged in or logged out -->
+	<script>
+		let current_user = '{{request.user}}'
+	</script>
+
 </head>
 <body>
 
