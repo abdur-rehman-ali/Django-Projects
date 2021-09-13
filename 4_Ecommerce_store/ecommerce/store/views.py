@@ -40,4 +40,4 @@ def checkout(request):
 	return render(request, 'store/checkout.html', context)
 
 def updateItem(request):
-	return JsonResponse('item added',safe=False)
+	return JsonResponse('item added to cart successfully',safe=False)
