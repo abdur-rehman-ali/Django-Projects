@@ -26,7 +26,7 @@ function cartButtonDataToBackend(product_id,action) {
         'action':action,
     }
 
-    let url = '/updateItem/';
+    let url = 'updateItem/';
 
     fetch(url, {
         method:'POST',

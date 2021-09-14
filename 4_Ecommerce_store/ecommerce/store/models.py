@@ -56,6 +56,8 @@ class Order(models.Model):
     def __str__(self):
 	    return str(self.id)
 
+#1-M relationship with product
+#1-M relationship with order
 class OrderItem(models.Model):
     id=models.AutoField(primary_key=True)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
@@ -67,7 +69,8 @@ class OrderItem(models.Model):
     def get_total(self):
         return self.product.price * self.quantity
 
-
+#1-M relationship with customer
+#1-M relationship with order
 class ShippingAddress(models.Model):
     id=models.AutoField(primary_key=True)
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
