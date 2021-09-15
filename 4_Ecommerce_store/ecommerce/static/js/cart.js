@@ -38,7 +38,8 @@ function cartButtonDataToBackend(product_id,action) {
     })
     .then(response=>  response.json() )
     .then(data=>{
-        console.log(data);
+        // Reload page , every time new data gets added 
+        location.reload();
     })
     .catch((error) => {
         console.error('Error:', error);
