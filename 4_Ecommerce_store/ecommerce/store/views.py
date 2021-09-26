@@ -63,8 +63,10 @@ def updateItem(request):
 
 	orderitem,created = OrderItem.objects.get_or_create(order=order,product=product)
 
+	#This will increment the cart value with up arrow is pressed
 	if action == 'add':
 		orderitem.quantity = orderitem.quantity+1
+	#This will decrement the cart value with down arrow is pressed
 	elif action == 'remove':
 		orderitem.quantity = orderitem.quantity -1
 	orderitem.save()
