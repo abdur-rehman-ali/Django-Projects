@@ -12,7 +12,9 @@ Update
   </section>
 
 <form action="" method="POST" novalidate>
-  {% csrf_token %} {% for er in form.non_field_errors %}
+  {% csrf_token %} 
+  {{ form.media }}
+  {% for er in form.non_field_errors %}
   <small class="alert-danger">{{er|striptags}}</small>
   {% endfor %} {% for field in form %}
   <div class="form-group">

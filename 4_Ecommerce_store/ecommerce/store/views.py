@@ -51,6 +51,8 @@ def checkout(request):
 	context = {'items':items,'order':order}
 	return render(request, 'store/checkout.html', context)
 
+
+
 def updateItem(request):
 	data = json.loads(request.body)
 	product_id = data['product_id']
