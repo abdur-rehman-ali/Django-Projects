@@ -30,41 +30,50 @@ def mobile(request):
  return render(request, 'app/mobile.html')
 
 def customerlogin(request):
-    if request.method == 'POST':
-        form = logInForm(request=request,data=request.POST)
-        if form.is_valid():
-            uname = form.cleaned_data['username']
-            upassword = form.cleaned_data['password']
-            user = authenticate(username=uname,password=upassword)
-            if user is not None:
-                login(request,user)
-                return HttpResponseRedirect('/')
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/')
     else:
-        form = logInForm()
-    context = {
-        'form':form
-    }
-    template_name = 'app/login.html'
-    return render(request, template_name,context)
+        if request.method == 'POST':
+            form = logInForm(request=request,data=request.POST)
+            if form.is_valid():
+                uname = form.cleaned_data['username']
+                upassword = form.cleaned_data['password']
+                user = authenticate(username=uname,password=upassword)
+                if user is not None:
+                    login(request,user)
+                    return HttpResponseRedirect('/')
+        else:
+            form = logInForm()
+        context = {
+            'form':form
+        }
+        template_name = 'app/login.html'
+        return render(request, template_name,context)
 
 def customerregistration(request):
-    if request.method=='POST':
-        form = registrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('login/')
-
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('/')
     else:
-        form = registrationForm()
-    context = {
-        'form':form
-    }
-    template_name = 'app/customerregistration.html'
-    return render(request, template_name,context)
+        if request.method=='POST':
+            form = registrationForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect('login/')
+
+        else:
+            form = registrationForm()
+        context = {
+            'form':form
+        }
+        template_name = 'app/customerregistration.html'
+        return render(request, template_name,context)
 
 def customerlogout(request):
-    logout(request)
-    return HttpResponseRedirect('/login/')
+    if request.user.is_authenticated:
+        logout(request)
+        return HttpResponseRedirect('/login/')
+    else:
+        return HttpResponseRedirect('/')
 
 def checkout(request):
  return render(request, 'app/checkout.html')
