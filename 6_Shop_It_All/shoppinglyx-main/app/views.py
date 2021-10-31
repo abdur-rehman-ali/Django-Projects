@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from .forms import registrationForm 
+from django.contrib.auth import login,authenticate,logout
+from django.shortcuts import render,HttpResponseRedirect
+from .forms import registrationForm ,logInForm
 
 def home(request):
  return render(request, 'app/home.html')
@@ -28,8 +29,23 @@ def change_password(request):
 def mobile(request):
  return render(request, 'app/mobile.html')
 
-def login(request):
- return render(request, 'app/login.html')
+def customerlogin(request):
+    if request.method == 'POST':
+        form = logInForm(request=request,data=request.POST)
+        if form.is_valid():
+            uname = form.cleaned_data['username']
+            upassword = form.cleaned_data['password']
+            user = authenticate(username=uname,password=upassword)
+            if user is not None:
+                login(request,user)
+                return HttpResponseRedirect('/')
+    else:
+        form = logInForm()
+    context = {
+        'form':form
+    }
+    template_name = 'app/login.html'
+    return render(request, template_name,context)
 
 def customerregistration(request):
     if request.method=='POST':

@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.models import User
 from django import forms
 from django.utils.translation import gettext_lazy as _
@@ -34,3 +34,13 @@ class registrationForm(UserCreationForm):
             }),
         }
         
+
+class logInForm(AuthenticationForm):
+    username = forms.CharField(max_length=254,widget=forms.TextInput(attrs={
+        'class':'form-control'
+    }),
+    label_suffix='')
+    password = forms.CharField(label=_("Password"), widget=forms.PasswordInput(attrs={
+        'class':'form-control'
+    }),
+    label_suffix='')
