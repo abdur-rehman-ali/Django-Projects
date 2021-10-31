@@ -1,6 +1,8 @@
 from django.contrib.auth import login,authenticate,logout
 from django.shortcuts import render,HttpResponseRedirect
-from .forms import registrationForm ,logInForm
+from .forms import registrationForm ,logInForm,changePasswordForm
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.decorators import login_required
 
 def home(request):
  return render(request, 'app/home.html')
@@ -23,8 +25,22 @@ def address(request):
 def orders(request):
  return render(request, 'app/orders.html')
 
+@login_required(login_url='/login/')
 def change_password(request):
- return render(request, 'app/changepassword.html')
+    if request.method == 'POST':
+        form = changePasswordForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request,user)
+            return HttpResponseRedirect('/')
+    else:
+        form =changePasswordForm(user=request.user)
+    context = {
+            'form':form
+        }
+    template_name = 'app/changepassword.html'
+    return render(request, template_name,context)
+
 
 def mobile(request):
  return render(request, 'app/mobile.html')
@@ -68,6 +84,7 @@ def customerregistration(request):
         template_name = 'app/customerregistration.html'
         return render(request, template_name,context)
 
+@login_required(login_url='/login/')
 def customerlogout(request):
     if request.user.is_authenticated:
         logout(request)

@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm,AuthenticationForm,PasswordChangeForm
 from django.contrib.auth.models import User
 from django import forms
 from django.utils.translation import gettext_lazy as _
@@ -44,3 +44,17 @@ class logInForm(AuthenticationForm):
         'class':'form-control'
     }),
     label_suffix='')
+
+class changePasswordForm(PasswordChangeForm):
+    old_password = forms.CharField(label=_("Old password"),
+                                   widget=forms.PasswordInput(attrs={
+                                       'class':'form-control'
+                                   }))
+    new_password1 = forms.CharField(label=_("New password"),
+                                    widget=forms.PasswordInput(attrs={
+                                       'class':'form-control'
+                                   }))
+    new_password2 = forms.CharField(label=_("Confirm new password ? "),
+                                    widget=forms.PasswordInput(attrs={
+                                        'class':'form-control'
+                                    }))
