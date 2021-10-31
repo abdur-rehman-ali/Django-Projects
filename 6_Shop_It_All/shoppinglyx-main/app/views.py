@@ -52,7 +52,8 @@ def customerregistration(request):
         form = registrationForm(request.POST)
         if form.is_valid():
             form.save()
-            form=registrationForm()
+            return HttpResponseRedirect('login/')
+
     else:
         form = registrationForm()
     context = {
@@ -60,6 +61,10 @@ def customerregistration(request):
     }
     template_name = 'app/customerregistration.html'
     return render(request, template_name,context)
+
+def customerlogout(request):
+    logout(request)
+    return HttpResponseRedirect('/login/')
 
 def checkout(request):
  return render(request, 'app/checkout.html')
