@@ -3,9 +3,23 @@ from django.shortcuts import render,HttpResponseRedirect
 from .forms import registrationForm ,logInForm,changePasswordForm
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from .models import product
+
 
 def home(request):
- return render(request, 'app/home.html')
+    trousers = product.objects.filter(category='TROUSER')
+    suits = product.objects.filter(category='SUIT')
+    shorts = product.objects.filter(category='SHORT')
+    shirts = product.objects.filter(category='SHIRT')
+
+    context = {
+        'trousers':trousers,
+        'suits':suits,
+        'shorts':shorts,
+        'shirts':shirts,
+    }
+    template_name = 'app/home.html'
+    return render(request,template_name,context)
 
 def product_detail(request):
  return render(request, 'app/productdetail.html')
