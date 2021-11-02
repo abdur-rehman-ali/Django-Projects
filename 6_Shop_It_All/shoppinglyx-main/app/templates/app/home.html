@@ -50,7 +50,7 @@
  <!-- Slider 1 -->
  <div class="owl-carousel" id="slider1">
    {% for trouser in trousers %}
-  <a href="{% url 'product-detail' %}" class="btn"><div class="item"><img src="{{trouser.image.url}}" alt="" height="200px"><span class="fw-bold">{{trouser.title}}</span><br><span class="fs-5">Rs. {{trouser.discounted_price}}</span></div></a>
+  <a href="{% url 'product-detail' trouser.id %}" class="btn"><div class="item"><img src="{{trouser.image.url}}" alt="" height="200px"><span class="fw-bold">{{trouser.title}}</span><br><span class="fs-5">Rs. {{trouser.discounted_price}}</span></div></a>
   {% endfor %}
 </div>
 </div>
@@ -61,7 +61,7 @@
  <!-- Slider 1 -->
  <div class="owl-carousel" id="slider1">
    {% for shirt in shirts %}
-  <a href="{% url 'product-detail' %}" class="btn"><div class="item"><img src="{{shirt.image.url}}" alt="" height="200px"><span class="fw-bold">{{shirt.title}}</span><br><span class="fs-5">Rs. {{shirt.discounted_price}}</span></div></a>
+  <a href="{% url 'product-detail' shirt.id %}" class="btn"><div class="item"><img src="{{shirt.image.url}}" alt="" height="200px"><span class="fw-bold">{{shirt.title}}</span><br><span class="fs-5">Rs. {{shirt.discounted_price}}</span></div></a>
   {% endfor %}
 </div>
 </div>
@@ -72,7 +72,7 @@
  <!-- Slider 1 -->
  <div class="owl-carousel" id="slider1">
    {% for suit in suits %}
-  <a href="{% url 'product-detail' %}" class="btn"><div class="item"><img src="{{suit.image.url}}" alt="" height="200px"><span class="fw-bold">{{suit.title}}</span><br><span class="fs-5">Rs. {{suit.discounted_price}}</span></div></a>
+  <a href="{% url 'product-detail' suit.id %}" class="btn"><div class="item"><img src="{{suit.image.url}}" alt="" height="200px"><span class="fw-bold">{{suit.title}}</span><br><span class="fs-5">Rs. {{suit.discounted_price}}</span></div></a>
   {% endfor %}
 </div>
 </div>
@@ -83,7 +83,7 @@
  <!-- Slider 1 -->
  <div class="owl-carousel" id="slider1">
    {% for short in shorts %}
-  <a href="{% url 'product-detail' %}" class="btn"><div class="item"><img src="{{short.image.url}}" alt="" height="200px"><span class="fw-bold">{{short.title}}</span><br><span class="fs-5">Rs. {{short.discounted_price}}</span></div></a>
+  <a href="{% url 'product-detail' short.id %}" class="btn"><div class="item"><img src="{{short.image.url}}" alt="" height="200px"><span class="fw-bold">{{short.title}}</span><br><span class="fs-5">Rs. {{short.discounted_price}}</span></div></a>
   {% endfor %}
 </div>
 </div>

@@ -21,8 +21,13 @@ def home(request):
     template_name = 'app/home.html'
     return render(request,template_name,context)
 
-def product_detail(request):
- return render(request, 'app/productdetail.html')
+def product_detail(request,id):
+    products = product.objects.get(id=id)
+    context = {
+        'product':products
+    }
+    template_name = 'app/productdetail.html'
+    return render(request, template_name,context)
 
 def add_to_cart(request):
  return render(request, 'app/addtocart.html')
